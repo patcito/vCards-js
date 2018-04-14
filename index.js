@@ -4,6 +4,7 @@
 /*jslint node: true */
 'use strict';
 
+import { Filesystem } from "expo"
 /**
  * Represents a contact that can be imported into Outlook, iOS, Mac OS, Android devices, and more
  */
@@ -33,10 +34,9 @@ var vCard = (function () {
              * @param  {string} filename
              */
             embedFromFile: function(fileLocation) {
-              var fs   = require('fs');
               var path = require('path');
               this.mediaType = path.extname(fileLocation).toUpperCase().replace(/\./g, "");
-              var imgData = fs.readFileSync(fileLocation);
+              var imgData = FileSystem.readAsStringAsync(fileLocation);
               this.url = imgData.toString('base64');
               this.base64 = true;
             },
@@ -329,8 +329,7 @@ var vCard = (function () {
             var vCardFormatter = require('./lib/vCardFormatter');
             var contents = vCardFormatter.getFormattedString(this);
 
-            var fs = require('fs');
-            fs.writeFileSync(filename, contents, { encoding: 'utf8' });
+            Filesystem.writeAsStringAsync(filename, contents);
         }
     };
 });

@@ -4,6 +4,7 @@
   "description": "Create vCards to import contacts into Outlook, iOS, Mac OS, Android devices, and more.",
   "main": "index.js",
   "dependencies": {
+    "expo": "^26.0.0",
     "moment": "~2.18.1"
   },
   "devDependencies": {
